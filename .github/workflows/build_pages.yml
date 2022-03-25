@@ -37,16 +37,21 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
         id: setup-ffmpeg
 
-      - name: Install system dependencies (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt update
-          sudo apt -y install texlive-full tipa python-opengl libpango1.0-dev
-          # sudo apt-get -y install texlive texlive-latex-extra texlive-fonts-extra texlive-latex-recommended texlive-science texlive-fonts-extra tipa python-opengl libpango1.0-dev xvfb
-          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-          # # start xvfb in the background
-          # sudo /usr/bin/Xvfb $DISPLAY -screen 0 1280x1024x24 &
-
+      # - name: Install system dependencies (Linux)
+      #   if: runner.os == 'Linux'
+      #   run: |
+      #     sudo apt update
+      #     sudo apt -y install texlive-full tipa python-opengl libpango1.0-dev
+      #     # sudo apt-get -y install texlive texlive-latex-extra texlive-fonts-extra texlive-latex-recommended texlive-science texlive-fonts-extra tipa python-opengl libpango1.0-dev xvfb
+      #     echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+      #     # # start xvfb in the background
+      #     # sudo /usr/bin/Xvfb $DISPLAY -screen 0 1280x1024x24 &
+      
+      - uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: texlive-full tipa python-opengl libpango1.0-dev
+          version: 1.0
+      
       - name: Install Environment
         run: |
           pip install -r requirements.txt
