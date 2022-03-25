@@ -6,6 +6,7 @@ from flair.models import SequenceTagger
 
 tagger = None
 
+
 def get_ner_tagged_sentence(text):
     global tagger
 
@@ -27,9 +28,11 @@ def get_ner_tagged_sentence(text):
 
 class NamedEntityRecognition1_1(Scene):
     def add_title(self):
+        title_text = "Named Entity Recognition"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
         intro_words1 = (
             Text(
-                "Named Entity Recognition", gradient=(BLUE, BLUE_D), should_center=True
+                title_text, gradient=(BLUE, BLUE_D), should_center=True
             )
             .scale(1.5)
             .to_edge(UP)
@@ -56,8 +59,10 @@ class NamedEntityRecognition1_1(Scene):
 
 class Problem1_2(Scene):
     def add_title(self):
+        title_text = "Problem"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
         title = (
-            Text("Problem", gradient=(BLUE, BLUE_D), should_center=True)
+            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
             .scale(1.5)
             .to_edge(UP)
         )
@@ -121,8 +126,10 @@ class Problem1_2(Scene):
 
 class Motivation1_3(Scene):
     def add_title(self):
+        title_text = "Motivation"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
         title = (
-            Text("Motivation", gradient=(BLUE, BLUE_D), should_center=True)
+            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
             .scale(1.5)
             .to_edge(UP)
         )
@@ -130,13 +137,10 @@ class Motivation1_3(Scene):
 
     def construct(self):
         self.add_title()
-        
+
         self.next_section("Processing Pipeline", PresentationSectionType.NORMAL)
-        processing_pipeline_text = Text(
-            "Erster Teil einer Processing Pipeline"
-        )
+        processing_pipeline_text = Text("Erster Teil einer Processing Pipeline")
         self.play(Write(processing_pipeline_text))
-        
 
         self.next_section("Processing Pipeline.1", PresentationSectionType.SUB_NORMAL)
         processing_pipeline_text.generate_target()
@@ -144,29 +148,23 @@ class Motivation1_3(Scene):
         processing_pipeline_text.target.set_color(GRAY)
         processing_pipeline_text.target.scale(0.5)
         self.play(MoveToTarget(processing_pipeline_text))
-        
 
         self.next_section("Beispiel", PresentationSectionType.NORMAL)
         example_text = "Max, Moritz, Anna und Nele fahren nach Köln"
         sentence = get_ner_tagged_sentence(example_text)
         text = Text(example_text).scale(0.8)
         self.play(Write(text))
-        
 
         self.next_section("Frage", PresentationSectionType.NORMAL)
         question_text = (
-            Text("Wie viele Personen fahren nach Köln?")
-            .scale(0.7)
-            .shift(DOWN)
+            Text("Wie viele Personen fahren nach Köln?").scale(0.7).shift(DOWN)
         )
         self.play(Write(question_text))
-        
 
         self.next_section("Frage", PresentationSectionType.SUB_NORMAL)
         question_text.generate_target()
         question_text.target.shift(2 * DOWN + 2 * LEFT)
         self.play(MoveToTarget(question_text))
-        
 
         # add tagging
         person_labels = []
@@ -203,62 +201,93 @@ class Motivation1_3(Scene):
             question_text, RIGHT
         )
         self.play(Transform(VGroup(*person_labels), person_count_text))
-        
+
 
 class OldWorkingPrinciple2_1(Scene):
-
     def add_title(self):
-        title = Text("Funktionsweise", gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
+        title_text = "Funktionsweise"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        title = (
+            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
+            .scale(1.5)
+            .to_edge(UP)
+        )
         self.add(title)
-    
+
     def construct(self):
         self.add_title()
-        
+
         # Dictionary
         self.next_section("Dictionary", PresentationSectionType.NORMAL)
-        dictionary = Text("Dictionary / Lexikon").shift(1.5*UP)
+        dictionary = Text("Dictionary / Lexikon").shift(1.5 * UP)
         self.play(Write(dictionary))
-        
 
         self.next_section("Dictionary Beispiel", PresentationSectionType.NORMAL)
-        dictionary_example_persons = Text('PER = {"Max", "Moritz", "Anna", "Nele"}', color=GRAY).scale(0.8).next_to(dictionary, DOWN)
-        dictionary_example_locations = Text('LOC = {"Dortmund", "Köln", "Berlin"}', color=GRAY).scale(0.8).next_to(dictionary_example_persons, DOWN)
+        dictionary_example_persons = (
+            Text('PER = {"Max", "Moritz", "Anna", "Nele"}', color=GRAY)
+            .scale(0.8)
+            .next_to(dictionary, DOWN)
+        )
+        dictionary_example_locations = (
+            Text('LOC = {"Dortmund", "Köln", "Berlin"}', color=GRAY)
+            .scale(0.8)
+            .next_to(dictionary_example_persons, DOWN)
+        )
         self.play(Write(dictionary_example_persons))
         self.play(Write(dictionary_example_locations))
 
-        dictionary_group = Group(dictionary, dictionary_example_persons, dictionary_example_locations)
-        
+        dictionary_group = Group(
+            dictionary, dictionary_example_persons, dictionary_example_locations
+        )
+
         self.next_section("Dictionary Example.1", PresentationSectionType.SUB_NORMAL)
         dictionary_group.generate_target()
-        dictionary_group.target.shift(4*LEFT + UP)
+        dictionary_group.target.shift(4 * LEFT + UP)
         dictionary_group.target.scale(0.5)
         self.play(MoveToTarget(dictionary_group))
-        
 
         # Handcraft features
         self.next_section("Handgefertigte Merkmale", PresentationSectionType.NORMAL)
         handcraft_features = Text("Handgefertigte Merkmale")
         self.play(Write(handcraft_features))
-        
-        self.next_section("Handgefertigte Merkmale Beispiele", PresentationSectionType.SUB_NORMAL)
-        handcraft_features_capitalizaiton = Text('Großschreibung', color=GRAY).scale(0.8).next_to(handcraft_features, DOWN)
-        handcraft_features_length = Text('Wortlänge', color=GRAY).scale(0.8).next_to(handcraft_features_capitalizaiton, DOWN)
-        handcraft_features_alphabet = Text('Zeichensatz (Buchstaben, Zahlen...)', color=GRAY).scale(0.8).next_to(handcraft_features_length, DOWN)
+
+        self.next_section(
+            "Handgefertigte Merkmale Beispiele", PresentationSectionType.SUB_NORMAL
+        )
+        handcraft_features_capitalizaiton = (
+            Text("Großschreibung", color=GRAY)
+            .scale(0.8)
+            .next_to(handcraft_features, DOWN)
+        )
+        handcraft_features_length = (
+            Text("Wortlänge", color=GRAY)
+            .scale(0.8)
+            .next_to(handcraft_features_capitalizaiton, DOWN)
+        )
+        handcraft_features_alphabet = (
+            Text("Zeichensatz (Buchstaben, Zahlen...)", color=GRAY)
+            .scale(0.8)
+            .next_to(handcraft_features_length, DOWN)
+        )
         self.play(Write(handcraft_features_capitalizaiton))
         self.play(Write(handcraft_features_length))
         self.play(Write(handcraft_features_alphabet))
 
 
-
 class NewWorkingPrinciple2_2(Scene):
-
     def add_title(self):
-        title = Text("Funktionsweise", gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
+        title_text = "Funktionsweise"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        title = (
+            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
+            .scale(1.5)
+            .to_edge(UP)
+        )
         self.add(title)
-    
+
     def construct(self):
         self.add_title()
-        
+
         # NN
         self.next_section("NN", PresentationSectionType.NORMAL)
         text_nn = Text("Neural Networks")
@@ -271,89 +300,113 @@ class NewWorkingPrinciple2_2(Scene):
 
         self.next_section("RNN - Shift", PresentationSectionType.NORMAL)
         text_rrn = VGroup(text_nn, text_rnn)
-        self.play(text_rrn.animate.shift(2*UP))
-
+        self.play(text_rrn.animate.shift(2 * UP))
 
 
 class AscendingIndexWordEmbedding2_3(Scene):
-
     def add_title(self):
-        title = Text("Naive Word Embedding", gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
+        title_text = "Naive Word Embedding"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        title = (
+            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
+            .scale(1.5)
+            .to_edge(UP)
+        )
         self.add(title)
-    
+
     def construct(self):
         self.add_title()
-        
+
         self.next_section("Naiv", PresentationSectionType.NORMAL)
-        text = Text("Wörter aufsteigend nummerieren").shift(2*UP)
+        text = Text("Wörter aufsteigend nummerieren").shift(2 * UP)
         self.play(Write(text))
-        
 
         self.next_section("Beispiel", PresentationSectionType.NORMAL)
         words = Text('{"Moritz", "Köln", "Dortmund", "Anna"}').scale(0.8)
         self.play(Write(words))
-        
+
         self.next_section("Sortiert", PresentationSectionType.NORMAL)
         words_sorted = Text('["Anna", "Dortmund", "Köln", "Moritz"]').scale(0.8)
-        self.play(TransformMatchingShapes(words, words_sorted, run_time=3, path_arc=PI / 2))
-        
+        self.play(
+            TransformMatchingShapes(words, words_sorted, run_time=3, path_arc=PI / 2)
+        )
+
         self.next_section("Backup", PresentationSectionType.NORMAL)
         words_sorted_backup = words_sorted.copy()
         words_sorted_backup.generate_target()
         words_sorted_backup.target.set_color(GRAY)
         words_sorted_backup.target.shift(UP)
         self.play(MoveToTarget(words_sorted_backup))
-        
+
         self.next_section("Index", PresentationSectionType.NORMAL)
-        words_sorted_with_idx = Text('[0,1,2,3]').scale(0.8)
+        words_sorted_with_idx = Text("[0,1,2,3]").scale(0.8)
         self.play(ReplacementTransform(words_sorted, words_sorted_with_idx))
-        
+
         self.next_section("Dictionary", PresentationSectionType.NORMAL)
         embedding_elements = VGroup(words_sorted_backup, words_sorted_with_idx)
-        embedding = Paragraph('embedding = {\n  "Anna": 0, "Dortmund": 1, \n  "Köln": 2, "Moritz": 3\n}').scale(0.8)
+        embedding = Paragraph(
+            'embedding = {\n  "Anna": 0, "Dortmund": 1, \n  "Köln": 2, "Moritz": 3\n}'
+        ).scale(0.8)
         self.play(ReplacementTransform(embedding_elements, embedding))
 
         # show problem with ascending numbering
-        problem_text1 = Text('dist("Anna", "Dortmund") = 1').shift(2*DOWN).scale(0.8)
-        problem_text2 = Text('dist("Anna", "Moritz") = 3').next_to(problem_text1, DOWN).scale(0.8)
+        problem_text1 = Text('dist("Anna", "Dortmund") = 1').shift(2 * DOWN).scale(0.8)
+        problem_text2 = (
+            Text('dist("Anna", "Moritz") = 3').next_to(problem_text1, DOWN).scale(0.8)
+        )
 
         self.next_section("Problem - 1", PresentationSectionType.NORMAL)
         self.play(Write(problem_text1))
-        
+
         self.next_section("Problem - 2", PresentationSectionType.NORMAL)
         self.play(Write(problem_text2))
-        
+
 
 class OneHotWordEmbedding2_4(Scene):
-
     def add_title(self):
-        title = Text("One-hot Word Embedding", gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
+        title_text = "One-hot Word Embedding"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        title = (
+            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
+            .scale(1.5)
+            .to_edge(UP)
+        )
         self.add(title)
-    
+
     def construct(self):
         self.add_title()
-        
+
         self.next_section("Beschreibung", PresentationSectionType.NORMAL)
-        text = Tex("Basisvektoren im $\\mathbb{R}^n$").shift(2*UP)
+        text = Tex("Basisvektoren im $\\mathbb{R}^n$").shift(2 * UP)
         self.play(Write(text))
 
         self.next_section("Moritz", PresentationSectionType.NORMAL)
-        moritz = Tex("Moritz = $\\left(\\begin{array}{c} 1 \\\\ 0 \\\\ 0 \\end{array}\\right)$").shift(4*LEFT)
+        moritz = Tex(
+            "Moritz = $\\left(\\begin{array}{c} 1 \\\\ 0 \\\\ 0 \\end{array}\\right)$"
+        ).shift(4 * LEFT)
         self.play(Write(moritz))
 
         self.next_section("Köln", PresentationSectionType.NORMAL)
-        koeln = Tex("K\\\"oln = $\\left(\\begin{array}{c} 0 \\\\ 1 \\\\ 0 \\end{array}\\right)$")
+        koeln = Tex(
+            'K\\"oln = $\\left(\\begin{array}{c} 0 \\\\ 1 \\\\ 0 \\end{array}\\right)$'
+        )
         self.play(Write(koeln))
 
         self.next_section("Dortmund", PresentationSectionType.NORMAL)
-        dortmund = Tex("Dortmund = $\\left(\\begin{array}{c} 0 \\\\ 0 \\\\ 1 \\end{array}\\right)$").shift(4.5*RIGHT)
+        dortmund = Tex(
+            "Dortmund = $\\left(\\begin{array}{c} 0 \\\\ 0 \\\\ 1 \\end{array}\\right)$"
+        ).shift(4.5 * RIGHT)
         self.play(Write(dortmund))
-
 
         # show problem with ascending numbering
         self.next_section("Problem", PresentationSectionType.NORMAL)
-        problem_text1 = Text('dist("Moritz", "Köln") = dist("Moritz", "Dortmund")').to_edge(DOWN).scale(0.8)
+        problem_text1 = (
+            Text('dist("Moritz", "Köln") = dist("Moritz", "Dortmund")')
+            .to_edge(DOWN)
+            .scale(0.8)
+        )
         self.play(Write(problem_text1))
+
 
 class OneHotWordEmbeddingPlot2_5(ThreeDScene):
     def construct(self):
@@ -404,34 +457,38 @@ class OneHotWordEmbeddingPlot2_5(ThreeDScene):
 
 class WordEmbedding2_6(Scene):
     def add_title(self):
-        title = Text("Semantical Word Embedding", gradient=(BLUE, BLUE_D), should_center=True).scale(1.3).to_edge(UP)
+        title = "Semantical Word Embedding"
+        self.next_section(title, PresentationSectionType.NORMAL)
+        title = (
+            Text(title, gradient=(BLUE, BLUE_D), should_center=True)
+            .scale(1.3)
+            .to_edge(UP)
+        )
         self.add(title)
 
     def construct(self):
         self.add_title()
 
         self.next_section("Axes", PresentationSectionType.NORMAL)
-        numberplane = NumberPlane().shift(2*DOWN) # y_length=5
-        self.add(numberplane)
-
+        numberplane = NumberPlane().shift(2 * DOWN)  # y_length=5
+        self.play(Create(numberplane))
 
         self.next_section("Dortmund", PresentationSectionType.NORMAL)
-        arrow = Arrow(2*DOWN, [2, 1, 0], buff=0)
-        tip_text = Text('Dortmund').next_to(arrow.get_end(), RIGHT)
+        arrow = Arrow(2 * DOWN, [2, 1, 0], buff=0)
+        tip_text = Text("Dortmund").next_to(arrow.get_end(), RIGHT)
         self.play(Create(arrow), Write(tip_text))
 
         self.next_section("Köln", PresentationSectionType.NORMAL)
-        arrow = Arrow(2*DOWN, [2, 0, 0], buff=0)
-        tip_text = Text('Köln').next_to(arrow.get_end(), RIGHT)
+        arrow = Arrow(2 * DOWN, [2, 0, 0], buff=0)
+        tip_text = Text("Köln").next_to(arrow.get_end(), RIGHT)
         self.play(Create(arrow), Write(tip_text))
 
-
         self.next_section("Moritz", PresentationSectionType.NORMAL)
-        arrow = Arrow(2*DOWN, [-3, 0, 0], buff=0)
-        tip_text = Text('Moritz').next_to(arrow.get_end(), LEFT)
+        arrow = Arrow(2 * DOWN, [-3, 0, 0], buff=0)
+        tip_text = Text("Moritz").next_to(arrow.get_end(), LEFT)
         self.play(Create(arrow), Write(tip_text))
 
         self.next_section("Anna", PresentationSectionType.NORMAL)
-        arrow = Arrow(2*DOWN, [-4, -1, 0], buff=0)
-        tip_text = Text('Anna').next_to(arrow.get_end(), LEFT)
+        arrow = Arrow(2 * DOWN, [-4, -1, 0], buff=0)
+        tip_text = Text("Anna").next_to(arrow.get_end(), LEFT)
         self.play(Create(arrow), Write(tip_text))
