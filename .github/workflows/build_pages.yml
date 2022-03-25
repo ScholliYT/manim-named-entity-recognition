@@ -77,22 +77,23 @@ jobs:
 
       - name: Run Manim
         run: | 
-          manim -qm -a --save_sections slides.py
+          manim -qh -a --save_sections slides.py
 
       - name: Run the Manim Editor
         run: |
           mkdir pages
           cd pages
           manedit --project_name PG-NER \
-            --quick_present_export ../media/videos/slides/720p30/sections/NamedEntityRecognition1_1.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/Problem1_2.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/Motivation1_3.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/OldWorkingPrinciple2_1.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/NewWorkingPrinciple2_2.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/AscendingIndexWordEmbedding2_3.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/OneHotWordEmbedding2_4.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/OneHotWordEmbeddingPlot2_5.json \
-            --quick_present_export ../media/videos/slides/720p30/sections/WordEmbedding2_6.json
+            --quick_present_export ../media/videos/slides/1080p60/sections/NamedEntityRecognition1_1.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/Problem1_2.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/Motivation1_3.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/OldWorkingPrinciple2_1.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/NewWorkingPrinciple2_2.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/AscendingIndexWordEmbedding2_3.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/OneHotWordEmbedding2_4.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/OneHotWordEmbeddingPlot2_5.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/WordEmbedding2_6.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/ChallengesWithHistoricalData4_1.json
 
       - name: Create Redirect
         run: echo "<head><meta http-equiv='refresh' content='0; URL=PG-NER/index.html'></head>" > pages/index.html

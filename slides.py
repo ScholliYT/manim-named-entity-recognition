@@ -13,6 +13,7 @@ def get_ner_tagged_sentence(text):
     if tagger is None:
         # load the NER tagger
         tagger = SequenceTagger.load("de-ner")
+        print("SequenceTagger loaded")
 
     sentence = Sentence(text)
     # run NER over sentence
@@ -30,13 +31,7 @@ class NamedEntityRecognition1_1(Scene):
     def add_title(self):
         title_text = "Named Entity Recognition"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        intro_words1 = (
-            Text(
-                title_text, gradient=(BLUE, BLUE_D), should_center=True
-            )
-            .scale(1.5)
-            .to_edge(UP)
-        )
+        intro_words1 = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
         self.add(intro_words1)
 
     def construct(self):
@@ -47,9 +42,7 @@ class NamedEntityRecognition1_1(Scene):
         self.play(Write(working_principle))
 
         self.next_section("State-of-the-art", PresentationSectionType.NORMAL)
-        state_of_the_art = (
-            Text("State-of-the-art").next_to(working_principle, DOWN).shift(DOWN)
-        )
+        state_of_the_art = Text("State-of-the-art").next_to(working_principle, DOWN).shift(DOWN)
         self.play(Write(state_of_the_art))
 
         self.next_section("Frameworks", PresentationSectionType.NORMAL)
@@ -61,11 +54,7 @@ class Problem1_2(Scene):
     def add_title(self):
         title_text = "Problem"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        title = (
-            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
-            .scale(1.5)
-            .to_edge(UP)
-        )
+        title = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
         self.add(title)
 
     def construct(self):
@@ -93,34 +82,16 @@ class Problem1_2(Scene):
             self.next_section(entity["text"], PresentationSectionType.NORMAL)
             tag_type = entity["labels"][0].value
             if tag_type == "PER":
-                person_framebox = BackgroundRectangle(
-                    text[fixed_start_pos:fixed_end_pos], buff=0.05, color=GREEN
-                )
-                person_label = (
-                    Text("Person", color=GREEN)
-                    .scale(0.8)
-                    .next_to(person_framebox, DOWN)
-                )
+                person_framebox = BackgroundRectangle(text[fixed_start_pos:fixed_end_pos], buff=0.05, color=GREEN)
+                person_label = Text("Person", color=GREEN).scale(0.8).next_to(person_framebox, DOWN)
                 self.play(Create(person_framebox), Write(person_label))
             elif tag_type == "LOC":
-                location_framebox = BackgroundRectangle(
-                    text[fixed_start_pos:fixed_end_pos], buff=0.05, color=RED
-                )
-                location_label = (
-                    Text("Location", color=RED)
-                    .scale(0.8)
-                    .next_to(location_framebox, DOWN)
-                )
+                location_framebox = BackgroundRectangle(text[fixed_start_pos:fixed_end_pos], buff=0.05, color=RED)
+                location_label = Text("Location", color=RED).scale(0.8).next_to(location_framebox, DOWN)
                 self.play(Create(location_framebox), Write(location_label))
             elif tag_type == "ORG":
-                org_framebox = BackgroundRectangle(
-                    text[fixed_start_pos:fixed_end_pos], buff=0.05, color=BLUE
-                )
-                org_label = (
-                    Text("Organization", color=BLUE)
-                    .scale(0.8)
-                    .next_to(org_framebox, DOWN)
-                )
+                org_framebox = BackgroundRectangle(text[fixed_start_pos:fixed_end_pos], buff=0.05, color=BLUE)
+                org_label = Text("Organization", color=BLUE).scale(0.8).next_to(org_framebox, DOWN)
                 self.play(Create(org_framebox), Write(org_label))
 
 
@@ -128,11 +99,7 @@ class Motivation1_3(Scene):
     def add_title(self):
         title_text = "Motivation"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        title = (
-            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
-            .scale(1.5)
-            .to_edge(UP)
-        )
+        title = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
         self.add(title)
 
     def construct(self):
@@ -156,9 +123,7 @@ class Motivation1_3(Scene):
         self.play(Write(text))
 
         self.next_section("Frage", PresentationSectionType.NORMAL)
-        question_text = (
-            Text("Wie viele Personen fahren nach Köln?").scale(0.7).shift(DOWN)
-        )
+        question_text = Text("Wie viele Personen fahren nach Köln?").scale(0.7).shift(DOWN)
         self.play(Write(question_text))
 
         self.next_section("Frage", PresentationSectionType.SUB_NORMAL)
@@ -183,23 +148,17 @@ class Motivation1_3(Scene):
             self.next_section(entity["text"], PresentationSectionType.NORMAL)
             tag_type = entity["labels"][0].value
             if tag_type == "PER":
-                person_framebox = BackgroundRectangle(
-                    text[fixed_start_pos:fixed_end_pos], buff=0.05, color=GREEN
-                )
+                person_framebox = BackgroundRectangle(text[fixed_start_pos:fixed_end_pos], buff=0.05, color=GREEN)
                 person_label = Text("PER", color=GREEN).next_to(person_framebox, DOWN)
                 self.play(Create(person_framebox), Write(person_label))
                 person_labels.append(person_label)
             elif tag_type == "LOC":
-                location_framebox = BackgroundRectangle(
-                    text[fixed_start_pos:fixed_end_pos], buff=0.05, color=RED
-                )
+                location_framebox = BackgroundRectangle(text[fixed_start_pos:fixed_end_pos], buff=0.05, color=RED)
                 location_label = Text("LOC", color=RED).next_to(location_framebox, DOWN)
                 self.play(Create(location_framebox), Write(location_label))
 
         self.next_section("Count", PresentationSectionType.NORMAL)
-        person_count_text = Text(str(len(person_labels)), color=GREEN).next_to(
-            question_text, RIGHT
-        )
+        person_count_text = Text(str(len(person_labels)), color=GREEN).next_to(question_text, RIGHT)
         self.play(Transform(VGroup(*person_labels), person_count_text))
 
 
@@ -207,11 +166,7 @@ class OldWorkingPrinciple2_1(Scene):
     def add_title(self):
         title_text = "Funktionsweise"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        title = (
-            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
-            .scale(1.5)
-            .to_edge(UP)
-        )
+        title = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
         self.add(title)
 
     def construct(self):
@@ -224,9 +179,7 @@ class OldWorkingPrinciple2_1(Scene):
 
         self.next_section("Dictionary Beispiel", PresentationSectionType.NORMAL)
         dictionary_example_persons = (
-            Text('PER = {"Max", "Moritz", "Anna", "Nele"}', color=GRAY)
-            .scale(0.8)
-            .next_to(dictionary, DOWN)
+            Text('PER = {"Max", "Moritz", "Anna", "Nele"}', color=GRAY).scale(0.8).next_to(dictionary, DOWN)
         )
         dictionary_example_locations = (
             Text('LOC = {"Dortmund", "Köln", "Berlin"}', color=GRAY)
@@ -236,9 +189,7 @@ class OldWorkingPrinciple2_1(Scene):
         self.play(Write(dictionary_example_persons))
         self.play(Write(dictionary_example_locations))
 
-        dictionary_group = Group(
-            dictionary, dictionary_example_persons, dictionary_example_locations
-        )
+        dictionary_group = Group(dictionary, dictionary_example_persons, dictionary_example_locations)
 
         self.next_section("Dictionary Example.1", PresentationSectionType.SUB_NORMAL)
         dictionary_group.generate_target()
@@ -251,23 +202,15 @@ class OldWorkingPrinciple2_1(Scene):
         handcraft_features = Text("Handgefertigte Merkmale")
         self.play(Write(handcraft_features))
 
-        self.next_section(
-            "Handgefertigte Merkmale Beispiele", PresentationSectionType.SUB_NORMAL
-        )
+        self.next_section("Handgefertigte Merkmale Beispiele", PresentationSectionType.SUB_NORMAL)
         handcraft_features_capitalizaiton = (
-            Text("Großschreibung", color=GRAY)
-            .scale(0.8)
-            .next_to(handcraft_features, DOWN)
+            Text("Großschreibung", color=GRAY).scale(0.8).next_to(handcraft_features, DOWN)
         )
         handcraft_features_length = (
-            Text("Wortlänge", color=GRAY)
-            .scale(0.8)
-            .next_to(handcraft_features_capitalizaiton, DOWN)
+            Text("Wortlänge", color=GRAY).scale(0.8).next_to(handcraft_features_capitalizaiton, DOWN)
         )
         handcraft_features_alphabet = (
-            Text("Zeichensatz (Buchstaben, Zahlen...)", color=GRAY)
-            .scale(0.8)
-            .next_to(handcraft_features_length, DOWN)
+            Text("Zeichensatz (Buchstaben, Zahlen...)", color=GRAY).scale(0.8).next_to(handcraft_features_length, DOWN)
         )
         self.play(Write(handcraft_features_capitalizaiton))
         self.play(Write(handcraft_features_length))
@@ -278,11 +221,7 @@ class NewWorkingPrinciple2_2(Scene):
     def add_title(self):
         title_text = "Funktionsweise"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        title = (
-            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
-            .scale(1.5)
-            .to_edge(UP)
-        )
+        title = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
         self.add(title)
 
     def construct(self):
@@ -303,15 +242,16 @@ class NewWorkingPrinciple2_2(Scene):
         self.play(text_rrn.animate.shift(2 * UP))
 
 
+        # TODO Mini tutorial on RNNs
+        # TODO Mini tutorial on LSTMs
+        # TODO Mini tutorial on Transformer?
+
+
 class AscendingIndexWordEmbedding2_3(Scene):
     def add_title(self):
         title_text = "Naive Word Embedding"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        title = (
-            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
-            .scale(1.5)
-            .to_edge(UP)
-        )
+        title = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
         self.add(title)
 
     def construct(self):
@@ -322,14 +262,12 @@ class AscendingIndexWordEmbedding2_3(Scene):
         self.play(Write(text))
 
         self.next_section("Beispiel", PresentationSectionType.NORMAL)
-        words = Text('{"Moritz", "Köln", "Dortmund", "Anna"}').scale(0.8)
+        words = Text('{"Max", "Moritz", "Anna", "Nele"}').scale(0.8)
         self.play(Write(words))
 
         self.next_section("Sortiert", PresentationSectionType.NORMAL)
-        words_sorted = Text('["Anna", "Dortmund", "Köln", "Moritz"]').scale(0.8)
-        self.play(
-            TransformMatchingShapes(words, words_sorted, run_time=3, path_arc=PI / 2)
-        )
+        words_sorted = Text('["Anna", "Max", "Moritz", "Nele"]').scale(0.8)
+        self.play(TransformMatchingShapes(words, words_sorted, run_time=3, path_arc=PI / 2))
 
         self.next_section("Backup", PresentationSectionType.NORMAL)
         words_sorted_backup = words_sorted.copy()
@@ -344,16 +282,12 @@ class AscendingIndexWordEmbedding2_3(Scene):
 
         self.next_section("Dictionary", PresentationSectionType.NORMAL)
         embedding_elements = VGroup(words_sorted_backup, words_sorted_with_idx)
-        embedding = Paragraph(
-            'embedding = {\n  "Anna": 0, "Dortmund": 1, \n  "Köln": 2, "Moritz": 3\n}'
-        ).scale(0.8)
+        embedding = Paragraph('embedding = {\n  "Anna": 0, "Max": 1, \n  "Moritz": 2, "Nele": 3\n}').scale(0.8)
         self.play(ReplacementTransform(embedding_elements, embedding))
 
         # show problem with ascending numbering
-        problem_text1 = Text('dist("Anna", "Dortmund") = 1').shift(2 * DOWN).scale(0.8)
-        problem_text2 = (
-            Text('dist("Anna", "Moritz") = 3').next_to(problem_text1, DOWN).scale(0.8)
-        )
+        problem_text1 = Text('dist("Anna", "Max") = 1').shift(2 * DOWN).scale(0.8)
+        problem_text2 = Text('dist("Anna", "Nele") = 3').next_to(problem_text1, DOWN).scale(0.8)
 
         self.next_section("Problem - 1", PresentationSectionType.NORMAL)
         self.play(Write(problem_text1))
@@ -366,11 +300,7 @@ class OneHotWordEmbedding2_4(Scene):
     def add_title(self):
         title_text = "One-hot Word Embedding"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        title = (
-            Text(title_text, gradient=(BLUE, BLUE_D), should_center=True)
-            .scale(1.5)
-            .to_edge(UP)
-        )
+        title = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
         self.add(title)
 
     def construct(self):
@@ -381,31 +311,16 @@ class OneHotWordEmbedding2_4(Scene):
         self.play(Write(text))
 
         self.next_section("Moritz", PresentationSectionType.NORMAL)
-        moritz = Tex(
-            "Moritz = $\\left(\\begin{array}{c} 1 \\\\ 0 \\\\ 0 \\end{array}\\right)$"
-        ).shift(4 * LEFT)
+        moritz = Tex("Moritz = $\\left(\\begin{array}{c} 1 \\\\ 0 \\\\ 0 \\end{array}\\right)$").shift(4 * LEFT)
         self.play(Write(moritz))
 
         self.next_section("Köln", PresentationSectionType.NORMAL)
-        koeln = Tex(
-            'K\\"oln = $\\left(\\begin{array}{c} 0 \\\\ 1 \\\\ 0 \\end{array}\\right)$'
-        )
+        koeln = Tex('K\\"oln = $\\left(\\begin{array}{c} 0 \\\\ 1 \\\\ 0 \\end{array}\\right)$')
         self.play(Write(koeln))
 
         self.next_section("Dortmund", PresentationSectionType.NORMAL)
-        dortmund = Tex(
-            "Dortmund = $\\left(\\begin{array}{c} 0 \\\\ 0 \\\\ 1 \\end{array}\\right)$"
-        ).shift(4.5 * RIGHT)
+        dortmund = Tex("Dortmund = $\\left(\\begin{array}{c} 0 \\\\ 0 \\\\ 1 \\end{array}\\right)$").shift(4.5 * RIGHT)
         self.play(Write(dortmund))
-
-        # show problem with ascending numbering
-        self.next_section("Problem", PresentationSectionType.NORMAL)
-        problem_text1 = (
-            Text('dist("Moritz", "Köln") = dist("Moritz", "Dortmund")')
-            .to_edge(DOWN)
-            .scale(0.8)
-        )
-        self.play(Write(problem_text1))
 
 
 class OneHotWordEmbeddingPlot2_5(ThreeDScene):
@@ -446,24 +361,30 @@ class OneHotWordEmbeddingPlot2_5(ThreeDScene):
         self.add_fixed_in_frame_mobjects(dortmund)
         self.play(Create(dortmund))
 
-        self.next_section("Moritz - Köln", PresentationSectionType.NORMAL)
-        mk_line = Line(vec1.get_end(), vec2.get_end(), color=RED)
-        self.play(Create(mk_line))
+        # show problem with ascending numbering
+        self.next_section("Problem", PresentationSectionType.NORMAL)
+        problem_text1 = Text('dist("Dortmund", "Moritz") = dist("Dortmund", "Köln")').to_edge(DOWN).scale(0.8)
+        self.add_fixed_in_frame_mobjects(problem_text1)
+        self.play(Write(problem_text1))
 
-        self.next_section("Moritz - Dortmund", PresentationSectionType.NORMAL)
-        md_line = Line(vec1.get_end(), vec3.get_end(), color=RED)
-        self.play(ReplacementTransform(mk_line, md_line))
+        self.next_section("Dortmund - Moritz", PresentationSectionType.NORMAL)
+        dm_line = Line(vec3.get_end(), vec1.get_end(), color=RED)
+        self.play(Create(dm_line))
+
+
+        self.next_section("Rotate line", PresentationSectionType.LOOP)
+        self.play(Rotate(dm_line, angle=PI/2, axis=[0,0,1], about_point=ORIGIN))
+        self.wait(0.5)
+        self.play(Rotate(dm_line, angle=-PI/2, axis=[0,0,1], about_point=ORIGIN))
+        self.wait(0.5)
+
 
 
 class WordEmbedding2_6(Scene):
     def add_title(self):
         title = "Semantical Word Embedding"
         self.next_section(title, PresentationSectionType.NORMAL)
-        title = (
-            Text(title, gradient=(BLUE, BLUE_D), should_center=True)
-            .scale(1.3)
-            .to_edge(UP)
-        )
+        title = Text(title, gradient=(BLUE, BLUE_D), should_center=True).scale(1.3).to_edge(UP)
         self.add(title)
 
     def construct(self):
@@ -492,3 +413,67 @@ class WordEmbedding2_6(Scene):
         arrow = Arrow(2 * DOWN, [-4, -1, 0], buff=0)
         tip_text = Text("Anna").next_to(arrow.get_end(), LEFT)
         self.play(Create(arrow), Write(tip_text))
+
+
+class ChallengesWithHistoricalData4_1(Scene):
+    def add_title(self):
+        title_text = "Herausforderung: Historische Daten"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        intro_words1 = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.2).to_edge(UP)
+        self.add(intro_words1)
+
+    def construct(self):
+        self.add_title()
+
+        self.next_section("Noisy Input", PresentationSectionType.NORMAL)
+        noisy_input = Text("Noisy Input").shift(1.5*UP+4*LEFT)
+        self.play(Write(noisy_input))
+        self.next_section("Noisy Input", PresentationSectionType.SUB_NORMAL)
+        noisy_input_example = Text("Zeichenweise Erkennungsfehler", color=GRAY).scale(0.5).next_to(noisy_input, DOWN)
+        self.play(Write(noisy_input_example)) 
+
+        self.next_section("Wenig Daten", PresentationSectionType.NORMAL)
+        limited_data = Text("Wenig Daten").next_to(noisy_input, DOWN).shift(DOWN)
+        self.play(Write(limited_data))
+        self.next_section("Wenig Daten", PresentationSectionType.SUB_NORMAL)
+        limited_data_example = Text("Kein Wikipedia", color=GRAY).scale(0.5).next_to(limited_data, DOWN)
+        self.play(Write(limited_data_example)) 
+
+        self.next_section("Domain Shift", PresentationSectionType.NORMAL)
+        domain_shift = Text("Domain Shift").next_to(limited_data, DOWN).shift(DOWN)
+        self.play(Write(domain_shift))
+        self.next_section("Domain Shift", PresentationSectionType.SUB_NORMAL)
+        domain_shift_example = Text("Zeitungstexte -> Briefe", color=GRAY).scale(0.5).next_to(domain_shift, DOWN)
+        self.play(Write(domain_shift_example))
+
+
+        
+        
+        self.next_section("Dynamische Sprache", PresentationSectionType.NORMAL)
+        dynamic_language = Text("Dynamische Sprache").shift(1.5*UP+3*RIGHT)
+        self.play(Write(dynamic_language))
+
+        self.next_section("Schreibweisen", PresentationSectionType.SUB_NORMAL)
+        dynamic_language_example = Text("Schreibweisen").scale(0.8).next_to(dynamic_language, DOWN)
+        self.play(Write(dynamic_language_example)) 
+        self.next_section("Litteratur", PresentationSectionType.SUB_NORMAL)
+        dynamic_language_example = Text("Litteratur", color=GRAY, t2c={'[:3]': GRAY, '[3:4]': RED, '[4:]': GRAY}).scale(0.5).next_to(dynamic_language_example, DOWN)
+        self.play(Write(dynamic_language_example)) 
+
+
+
+        self.next_section("Konventionen", PresentationSectionType.SUB_NORMAL)
+        dynamic_language_example = Text("Konventionen").scale(0.8).next_to(dynamic_language_example, DOWN).shift(0.5*DOWN)
+        self.play(Write(dynamic_language_example)) 
+        self.next_section("Anrede", PresentationSectionType.SUB_NORMAL)
+        dynamic_language_example = Text("Anrede", color=GRAY).scale(0.5).next_to(dynamic_language_example, DOWN)
+        self.play(Write(dynamic_language_example)) 
+
+        self.next_section("Entity drift", PresentationSectionType.SUB_NORMAL)
+        dynamic_language_example = Text("Entity drift").scale(0.8).next_to(dynamic_language_example, DOWN).shift(0.5*DOWN)
+        self.play(Write(dynamic_language_example)) 
+
+        # TODO Find better example of entity drift
+        self.next_section("Preußen", PresentationSectionType.SUB_NORMAL)
+        dynamic_language_example = Text("Preußen - Früher Region, heute Fußballverein", color=GRAY).scale(0.5).next_to(dynamic_language_example, DOWN)
+        self.play(Write(dynamic_language_example)) 
