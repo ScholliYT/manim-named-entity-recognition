@@ -74,6 +74,7 @@ jobs:
             --quick_present_export ../media/videos/slides/1080p60/sections/OneHotWordEmbedding2_4.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/OneHotWordEmbeddingPlot2_5.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/WordEmbedding2_6.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/Datsets3_1.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/ChallengesWithHistoricalData4_1.json
 
       - name: Create Redirect

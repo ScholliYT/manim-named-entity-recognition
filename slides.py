@@ -414,6 +414,73 @@ class WordEmbedding2_6(Scene):
         tip_text = Text("Anna").next_to(arrow.get_end(), LEFT)
         self.play(Create(arrow), Write(tip_text))
 
+class Datsets3_1(Scene):
+    def add_title(self):
+        title_text = "Datensätze"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        intro_words1 = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.2).to_edge(UP)
+        self.add(intro_words1)
+
+    def construct(self):
+        self.add_title()
+
+        self.next_section("Conll2003", PresentationSectionType.NORMAL)
+        conll2003 = Text("Conll2003").shift(1.5*UP).to_edge(LEFT).shift(0.5*RIGHT)
+        self.play(Write(conll2003))
+        
+        self.next_section("Sprachen", PresentationSectionType.NORMAL)
+        conll2003_languages = Text("Englisch + Deutsch").next_to(conll2003, RIGHT).scale(0.6).shift(0.1*DOWN)
+        self.play(Write(conll2003_languages))
+
+        self.next_section("Entities", PresentationSectionType.NORMAL)
+        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).scale(0.6)
+        self.play(Write(conll2003_entities))
+
+        self.next_section("Beispielsatz", PresentationSectionType.SUB_NORMAL)
+        conll2003_example = "Germany's representative to the European Union's veterinary committee\nWerner Zwingmann said on Wednesday consumers should buy sheepmeat\nfrom countries other than Britain until the scientific advice was clearer."
+
+
+        t2c_dict = {
+            "[0:7]": RED,
+            "[28:41]": BLUE,
+            "[62:77]": GREEN,
+            "[141:148]": RED
+        }
+
+        # t2c_dict = {}
+        # sentence = get_ner_tagged_sentence(conll2003_example)
+        # for entity in sentence.to_dict("ner")["entities"]:
+        #     start_offset = conll2003_example[0 : entity["start_pos"]].count(" ")
+        #     end_offset = conll2003_example[0 : entity["end_pos"]].count(" ")
+        #     fixed_start_pos = entity["start_pos"] - start_offset
+        #     fixed_end_pos = entity["end_pos"] - end_offset
+        #     print(
+        #         entity,
+        #         fixed_start_pos,
+        #         fixed_end_pos,
+        #         conll2003_example.replace(" ", "")[fixed_start_pos:fixed_end_pos],
+        #     )
+
+        #     tag_type = entity["labels"][0].value
+        #     if tag_type == "PER":
+        #         color=GREEN
+        #     elif tag_type == "LOC":
+        #         color=RED
+        #     elif tag_type == "ORG":
+        #         color=BLUE
+        #     t2c_dict[f"[{fixed_start_pos}:{fixed_end_pos}]"] = color
+
+
+        conll2003_example_text = Paragraph(conll2003_example, color=GRAY, t2c=t2c_dict).scale(0.5).next_to(conll2003, DOWN).to_edge(LEFT).shift(0.8*RIGHT)
+        self.play(Write(conll2003_example_text))
+
+        self.next_section("Score", PresentationSectionType.NORMAL)
+        conll2003_score = Tex("F1-Score von $\\geq 93\\%$").scale(0.7).shift(DOWN)
+        conll2003_top_score = Tex("Top F1-Score von $\\geq 94.6\\%$").scale(0.7).next_to(conll2003_score, DOWN)
+        self.play(Write(conll2003_score))
+        self.play(Write(conll2003_top_score))
+
+
 
 class ChallengesWithHistoricalData4_1(Scene):
     def add_title(self):

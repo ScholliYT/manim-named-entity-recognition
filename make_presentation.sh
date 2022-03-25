@@ -11,4 +11,6 @@ manedit --project_name PG-NER \
     --quick_present_export ./media/videos/slides/720p30/sections/OneHotWordEmbedding2_4.json \
     --quick_present_export ./media/videos/slides/720p30/sections/OneHotWordEmbeddingPlot2_5.json \
     --quick_present_export ./media/videos/slides/720p30/sections/WordEmbedding2_6.json \
+    --quick_present_export ./media/videos/slides/720p30/sections/Datsets3_1.json \
     --quick_present_export ./media/videos/slides/720p30/sections/ChallengesWithHistoricalData4_1.json
+
