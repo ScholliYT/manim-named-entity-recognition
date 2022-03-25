@@ -1030,7 +1030,7 @@
         ]
     },
     {
-        "sections_len": 2,
+        "sections_len": 3,
         "sections": [
             {
                 "id": 2,
@@ -1041,7 +1041,7 @@
                 "width": 1920,
                 "height": 1080,
                 "fps": "60",
-                "duration": 2.0,
+                "duration": 1.0,
                 "project_name": "PG-NER",
                 "in_project_video": "video_0050.mp4",
                 "in_project_thumbnail": "thumb_0050.jpg",
@@ -1050,18 +1050,34 @@
             },
             {
                 "id": 3,
-                "name": "Beispielsatz",
+                "name": "Entities",
                 "type": "normal",
                 "is_sub_section": true,
                 "original_video": "/home/runner/work/manim-named-entity-recognition/manim-named-entity-recognition/pages/../media/videos/slides/1080p60/sections/Datsets3_1_0003.mp4",
                 "width": 1920,
                 "height": 1080,
                 "fps": "60",
-                "duration": 2.0,
+                "duration": 1.0,
                 "project_name": "PG-NER",
                 "in_project_video": "video_0051.mp4",
                 "in_project_thumbnail": "thumb_0051.jpg",
                 "in_project_id": 51,
+                "parent_id": 50
+            },
+            {
+                "id": 4,
+                "name": "Beispielsatz",
+                "type": "normal",
+                "is_sub_section": true,
+                "original_video": "/home/runner/work/manim-named-entity-recognition/manim-named-entity-recognition/pages/../media/videos/slides/1080p60/sections/Datsets3_1_0004.mp4",
+                "width": 1920,
+                "height": 1080,
+                "fps": "60",
+                "duration": 2.0,
+                "project_name": "PG-NER",
+                "in_project_video": "video_0052.mp4",
+                "in_project_thumbnail": "thumb_0052.jpg",
+                "in_project_id": 52,
                 "parent_id": 50
             }
         ]
@@ -1070,20 +1086,20 @@
         "sections_len": 1,
         "sections": [
             {
-                "id": 4,
+                "id": 5,
                 "name": "Score",
                 "type": "normal",
                 "is_sub_section": false,
-                "original_video": "/home/runner/work/manim-named-entity-recognition/manim-named-entity-recognition/pages/../media/videos/slides/1080p60/sections/Datsets3_1_0004.mp4",
+                "original_video": "/home/runner/work/manim-named-entity-recognition/manim-named-entity-recognition/pages/../media/videos/slides/1080p60/sections/Datsets3_1_0005.mp4",
                 "width": 1920,
                 "height": 1080,
                 "fps": "60",
                 "duration": 4.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0052.mp4",
-                "in_project_thumbnail": "thumb_0052.jpg",
-                "in_project_id": 52,
-                "parent_id": 52
+                "in_project_video": "video_0053.mp4",
+                "in_project_thumbnail": "thumb_0053.jpg",
+                "in_project_id": 53,
+                "parent_id": 53
             }
         ]
     },
@@ -1101,10 +1117,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0053.mp4",
-                "in_project_thumbnail": "thumb_0053.jpg",
-                "in_project_id": 53,
-                "parent_id": 53
+                "in_project_video": "video_0054.mp4",
+                "in_project_thumbnail": "thumb_0054.jpg",
+                "in_project_id": 54,
+                "parent_id": 54
             },
             {
                 "id": 1,
@@ -1117,10 +1133,10 @@
                 "fps": "60",
                 "duration": 2.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0054.mp4",
-                "in_project_thumbnail": "thumb_0054.jpg",
-                "in_project_id": 54,
-                "parent_id": 53
+                "in_project_video": "video_0055.mp4",
+                "in_project_thumbnail": "thumb_0055.jpg",
+                "in_project_id": 55,
+                "parent_id": 54
             }
         ]
     },
@@ -1138,10 +1154,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0055.mp4",
-                "in_project_thumbnail": "thumb_0055.jpg",
-                "in_project_id": 55,
-                "parent_id": 55
+                "in_project_video": "video_0056.mp4",
+                "in_project_thumbnail": "thumb_0056.jpg",
+                "in_project_id": 56,
+                "parent_id": 56
             },
             {
                 "id": 3,
@@ -1154,10 +1170,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0056.mp4",
-                "in_project_thumbnail": "thumb_0056.jpg",
-                "in_project_id": 56,
-                "parent_id": 55
+                "in_project_video": "video_0057.mp4",
+                "in_project_thumbnail": "thumb_0057.jpg",
+                "in_project_id": 57,
+                "parent_id": 56
             }
         ]
     },
@@ -1175,10 +1191,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0057.mp4",
-                "in_project_thumbnail": "thumb_0057.jpg",
-                "in_project_id": 57,
-                "parent_id": 57
+                "in_project_video": "video_0058.mp4",
+                "in_project_thumbnail": "thumb_0058.jpg",
+                "in_project_id": 58,
+                "parent_id": 58
             },
             {
                 "id": 5,
@@ -1191,10 +1207,10 @@
                 "fps": "60",
                 "duration": 2.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0058.mp4",
-                "in_project_thumbnail": "thumb_0058.jpg",
-                "in_project_id": 58,
-                "parent_id": 57
+                "in_project_video": "video_0059.mp4",
+                "in_project_thumbnail": "thumb_0059.jpg",
+                "in_project_id": 59,
+                "parent_id": 58
             }
         ]
     },
@@ -1212,10 +1228,10 @@
                 "fps": "60",
                 "duration": 2.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0059.mp4",
-                "in_project_thumbnail": "thumb_0059.jpg",
-                "in_project_id": 59,
-                "parent_id": 59
+                "in_project_video": "video_0060.mp4",
+                "in_project_thumbnail": "thumb_0060.jpg",
+                "in_project_id": 60,
+                "parent_id": 60
             },
             {
                 "id": 7,
@@ -1228,10 +1244,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0060.mp4",
-                "in_project_thumbnail": "thumb_0060.jpg",
-                "in_project_id": 60,
-                "parent_id": 59
+                "in_project_video": "video_0061.mp4",
+                "in_project_thumbnail": "thumb_0061.jpg",
+                "in_project_id": 61,
+                "parent_id": 60
             },
             {
                 "id": 8,
@@ -1244,10 +1260,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0061.mp4",
-                "in_project_thumbnail": "thumb_0061.jpg",
-                "in_project_id": 61,
-                "parent_id": 59
+                "in_project_video": "video_0062.mp4",
+                "in_project_thumbnail": "thumb_0062.jpg",
+                "in_project_id": 62,
+                "parent_id": 60
             },
             {
                 "id": 9,
@@ -1260,10 +1276,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0062.mp4",
-                "in_project_thumbnail": "thumb_0062.jpg",
-                "in_project_id": 62,
-                "parent_id": 59
+                "in_project_video": "video_0063.mp4",
+                "in_project_thumbnail": "thumb_0063.jpg",
+                "in_project_id": 63,
+                "parent_id": 60
             },
             {
                 "id": 10,
@@ -1276,10 +1292,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0063.mp4",
-                "in_project_thumbnail": "thumb_0063.jpg",
-                "in_project_id": 63,
-                "parent_id": 59
+                "in_project_video": "video_0064.mp4",
+                "in_project_thumbnail": "thumb_0064.jpg",
+                "in_project_id": 64,
+                "parent_id": 60
             },
             {
                 "id": 11,
@@ -1292,10 +1308,10 @@
                 "fps": "60",
                 "duration": 1.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0064.mp4",
-                "in_project_thumbnail": "thumb_0064.jpg",
-                "in_project_id": 64,
-                "parent_id": 59
+                "in_project_video": "video_0065.mp4",
+                "in_project_thumbnail": "thumb_0065.jpg",
+                "in_project_id": 65,
+                "parent_id": 60
             },
             {
                 "id": 12,
@@ -1308,10 +1324,10 @@
                 "fps": "60",
                 "duration": 2.0,
                 "project_name": "PG-NER",
-                "in_project_video": "video_0065.mp4",
-                "in_project_thumbnail": "thumb_0065.jpg",
-                "in_project_id": 65,
-                "parent_id": 59
+                "in_project_video": "video_0066.mp4",
+                "in_project_thumbnail": "thumb_0066.jpg",
+                "in_project_id": 66,
+                "parent_id": 60
             }
         ]
     }
