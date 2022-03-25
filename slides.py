@@ -429,12 +429,16 @@ class Datsets3_1(Scene):
         self.play(Write(conll2003))
         
         self.next_section("Sprachen", PresentationSectionType.NORMAL)
-        conll2003_languages = Text("Englisch + Deutsch").next_to(conll2003, RIGHT).scale(0.6).shift(0.1*DOWN)
+        conll2003_languages = Text("Englisch + Deutsch").next_to(conll2003, RIGHT).scale(0.6).shift(0.1*DOWN+0.5*LEFT)
         self.play(Write(conll2003_languages))
 
         self.next_section("Entities", PresentationSectionType.NORMAL)
-        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).scale(0.6)
-        self.play(Write(conll2003_entities))
+        conll2003_entity_categories = Text("4 Kategorien").next_to(conll2003_languages, RIGHT).scale(0.6).shift(0.25*LEFT)
+        self.play(Write(conll2003_entity_categories))
+
+        self.next_section("Entities", PresentationSectionType.SUB_NORMAL)
+        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).scale(0.6).shift(0.5*LEFT)
+        self.play(ReplacementTransform(conll2003_entity_categories, conll2003_entities))
 
         self.next_section("Beispielsatz", PresentationSectionType.SUB_NORMAL)
         conll2003_example = "Germany's representative to the European Union's veterinary committee\nWerner Zwingmann said on Wednesday consumers should buy sheepmeat\nfrom countries other than Britain until the scientific advice was clearer."
@@ -475,8 +479,8 @@ class Datsets3_1(Scene):
         self.play(Write(conll2003_example_text))
 
         self.next_section("Score", PresentationSectionType.NORMAL)
-        conll2003_score = Tex("F1-Score von $\\geq 93\\%$").scale(0.7).shift(DOWN)
-        conll2003_top_score = Tex("Top F1-Score von $\\geq 94.6\\%$").scale(0.7).next_to(conll2003_score, DOWN)
+        conll2003_score =     Tex("Normaler F1-Score: $\\geq 93\\%$").scale(0.7).shift(DOWN)
+        conll2003_top_score = Tex("Top F1-Score: $94.6\\%$").scale(0.7).next_to(conll2003_score, DOWN)
         self.play(Write(conll2003_score))
         self.play(Write(conll2003_top_score))
 
