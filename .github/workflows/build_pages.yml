@@ -70,10 +70,10 @@ jobs:
       - name: Install Environment
         run: |
           pip install -r requirements.txt
-      - name: Compile webpack
-        run: |
-          npm ci
-          npm run build_release
+      # - name: Compile webpack
+      #   run: |
+      #     npm ci
+      #     npm run build_release
 
       - name: Run Manim
         run: | 
