@@ -13,6 +13,7 @@ manedit --project_name PG-NER \
     --quick_present_export ./media/videos/slides/720p30/sections/WordEmbedding2_6.json \
     --quick_present_export ./media/videos/slides/720p30/sections/WordEmbedding2_7.json \
     --quick_present_export ./media/videos/slides/720p30/sections/Datsets3_1.json \
-    --quick_present_export ./media/videos/slides/720p30/sections/Frameworks3_2.json \
+    --quick_present_export ./media/videos/slides/720p30/sections/Datsets3_2.json \
+    --quick_present_export ./media/videos/slides/720p30/sections/Frameworks3_3.json \
     --quick_present_export ./media/videos/slides/720p30/sections/ChallengesWithHistoricalData4_1.json
 

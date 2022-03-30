@@ -540,7 +540,33 @@ class Datsets3_1(Scene):
         self.play(Write(conll2003_score))
         self.play(Write(conll2003_top_score))
 
-class Frameworks3_2(Scene):
+
+class Datsets3_2(Scene):
+    def add_title(self):
+        title_text = "Weitere Named Entities"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        intro_words1 = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.2).to_edge(UP)
+        self.add(intro_words1)
+
+    def construct(self):
+        self.add_title()
+
+        self.next_section("Ontonotes", PresentationSectionType.NORMAL)
+        ontonotes_named_entities = Text("Ontonotes Datensatz").shift(1.5*UP).to_edge(LEFT).shift(0.5*RIGHT)
+        self.play(Write(ontonotes_named_entities))
+        
+
+        # {"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}
+        t2c_dict = {
+            "[41:44]": RED,
+            "[64:67]": BLUE,
+            "[76:82]": GREEN
+        }
+        self.next_section("Entities", PresentationSectionType.SUB_NORMAL)
+        ontonotes_entities = Paragraph("CARDINAL, DATE, EVENT, FAC, GPE,\nLANGUAGE, LAW, LOC, MONEY, NORP,\nORDINAL, ORG, PERCENT, PERSON, PRODUCT,\nQUANTITY, TIME, WORK_OF_ART", t2c=t2c_dict).scale(0.6).next_to(ontonotes_named_entities, DOWN).shift(2*RIGHT)
+        self.play(Write(ontonotes_entities))
+
+class Frameworks3_3(Scene):
     def add_title(self):
         title_text = "Frameworks"
         self.next_section(title_text, PresentationSectionType.NORMAL)
