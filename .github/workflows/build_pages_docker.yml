@@ -1,4 +1,4 @@
-name: build presentation
+name: build presentation using docker
 
 concurrency:
   group: ${{ github.ref }}
@@ -8,6 +8,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - slides.py
+      - make_presentation.sh
+      - requirements.txt
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Build Manim Presentation'
 
 jobs:
   test:
@@ -21,40 +29,49 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python: [3.9]
+    container: 
+      image: ghcr.io/scholliyt/manim-named-entity-recognition:main
+      volumes:
+       - /home/tom/git/manim-named-entity-recognition:/manim
 
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
 
-      - name: Setup Python ${{ matrix.python }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python }}
+      # - name: Setup Python ${{ matrix.python }}
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: ${{ matrix.python }}
 
-      - name: Install and cache ffmpeg (all OS)
-        uses: FedericoCarboni/setup-ffmpeg@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-        id: setup-ffmpeg
+      # - name: Install and cache ffmpeg (all OS)
+      #   uses: FedericoCarboni/setup-ffmpeg@v1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #   id: setup-ffmpeg
 
-      - uses: awalsh128/cache-apt-pkgs-action@v1
-        with:
-          packages: texlive-full tipa python-opengl libpango1.0-dev
-          version: 1.0
+      # - uses: awalsh128/cache-apt-pkgs-action@v1
+      #   with:
+      #     packages: texlive-full tipa python-opengl libpango1.0-dev
+      #     version: 1.0
 
-      - name: Install system dependencies (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt update
-          sudo apt -y install texlive-full tipa python-opengl libpango1.0-dev
-          # sudo apt-get -y install texlive texlive-latex-extra texlive-fonts-extra texlive-latex-recommended texlive-science texlive-fonts-extra tipa python-opengl libpango1.0-dev xvfb
-          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-          # # start xvfb in the background
-          # sudo /usr/bin/Xvfb $DISPLAY -screen 0 1280x1024x24 &
+      # - name: Install system dependencies (Linux)
+      #   if: runner.os == 'Linux'
+      #   run: |
+      #     sudo apt update
+      #     sudo apt -y install texlive-full tipa python-opengl libpango1.0-dev
+      #     # sudo apt-get -y install texlive texlive-latex-extra texlive-fonts-extra texlive-latex-recommended texlive-science texlive-fonts-extra tipa python-opengl libpango1.0-dev xvfb
+      #     echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+      #     # # start xvfb in the background
+      #     # sudo /usr/bin/Xvfb $DISPLAY -screen 0 1280x1024x24 &
       
-      - name: Install Environment
+      # - name: Install Environment
+      #   run: |
+      #     pip install -r requirements.txt
+
+      - name: Check Directories
         run: |
-          pip install -r requirements.txt
+          pwd
+          ls -la
 
       - name: Run Manim
         run: | 
