@@ -414,6 +414,62 @@ class WordEmbedding2_6(Scene):
         tip_text = Text("Anna").next_to(arrow.get_end(), LEFT)
         self.play(Create(arrow), Write(tip_text))
 
+class WordEmbedding2_7(Scene):
+    def add_title(self):
+        title = "Semantical Word Embedding"
+        self.next_section(title, PresentationSectionType.NORMAL)
+        title = Text(title, gradient=(BLUE, BLUE_D), should_center=True).scale(1.3).to_edge(UP)
+        self.add(title)
+
+    def construct(self):
+        self.add_title()
+
+        self.next_section("GloVe", PresentationSectionType.NORMAL)
+        glove = Text("GloVe").shift(1.5*UP+4*LEFT)
+        self.play(Write(glove))
+        self.next_section("Kontextfrei / Wort level", PresentationSectionType.SUB_NORMAL)
+        glove_static = Text("Kontextfrei / Wort level", color=GRAY).scale(0.5).next_to(glove, DOWN)
+        self.play(Write(glove_static)) 
+        self.next_section("Dimensionalität", PresentationSectionType.SUB_NORMAL)
+        glove_dim = Text("50d, 100d, 200d und 300d Vektoren", color=GRAY).scale(0.5).next_to(glove_static, DOWN)
+        self.play(Write(glove_dim)) 
+        self.next_section("Sprachen", PresentationSectionType.SUB_NORMAL)
+        glove_lang = Text("English", color=GRAY).scale(0.5).next_to(glove_dim, DOWN)
+        self.play(Write(glove_lang)) 
+
+        self.next_section("FastText", PresentationSectionType.NORMAL)
+        fasttext = Text("FastText").shift(1.5*DOWN+4*LEFT)
+        self.play(Write(fasttext))
+        self.next_section("Kontextfrei / Wort level", PresentationSectionType.SUB_NORMAL)
+        fasttextstatic = Text("Kontextfrei / Wort level", color=GRAY).scale(0.5).next_to(fasttext, DOWN)
+        self.play(Write(fasttextstatic)) 
+        self.next_section("Dimensionalität", PresentationSectionType.SUB_NORMAL)
+        fasttextdim = Text("300d Vektoren", color=GRAY).scale(0.5).next_to(fasttextstatic, DOWN)
+        self.play(Write(fasttextdim)) 
+        self.next_section("Sprachen", PresentationSectionType.SUB_NORMAL)
+        fasttext_lang = Text("Einzelne Modelle für diverse Sprachen", color=GRAY).scale(0.5).next_to(fasttextdim, DOWN)
+        self.play(Write(fasttext_lang)) 
+
+        self.next_section("Flair", PresentationSectionType.NORMAL)
+        flair = Text("Flair").shift(1.5*UP+3*RIGHT)
+        self.play(Write(flair))
+        self.next_section("Kontextabhängig / Wort level", PresentationSectionType.SUB_NORMAL)
+        flair_contexttual = Text("Kontextabhängig / Wort level", color=GRAY).scale(0.5).next_to(flair, DOWN)
+        self.play(Write(flair_contexttual)) 
+        self.next_section("Kontextabhängig", PresentationSectionType.SUB_NORMAL)
+        flair_dim = Paragraph("Das selbe Wort kann verschiedne \nBedeutungen haben", color=GRAY).scale(0.5).next_to(flair_contexttual, DOWN)
+        self.play(Write(flair_dim)) 
+        self.next_section("Flair", PresentationSectionType.SUB_NORMAL)
+        flair_lang = Text("Einzel- sowie Multi-Sprachen Modelle", color=GRAY).scale(0.5).next_to(flair_dim, DOWN)
+        self.play(Write(flair_lang)) 
+
+        self.next_section("Stacked", PresentationSectionType.NORMAL)
+        stacked = Text("Stacked").shift(2*DOWN+3*RIGHT)
+        self.play(Write(stacked))
+        self.next_section("Stacked", PresentationSectionType.SUB_NORMAL)
+        stacked_context = Paragraph("Kombination aus Kontextfrei \nund Kontextabhängig", color=GRAY).scale(0.5).next_to(stacked, DOWN)
+        self.play(Write(stacked_context)) 
+
 class Datsets3_1(Scene):
     def add_title(self):
         title_text = "Datensätze"
@@ -483,6 +539,61 @@ class Datsets3_1(Scene):
         conll2003_top_score = Tex("Top F1-Score: $94.6\\%$").scale(0.7).next_to(conll2003_score, DOWN)
         self.play(Write(conll2003_score))
         self.play(Write(conll2003_top_score))
+
+class Frameworks3_2(Scene):
+    def add_title(self):
+        title_text = "Frameworks"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        intro_words1 = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.2).to_edge(UP)
+        self.add(intro_words1)
+
+    def construct(self):
+        self.add_title()
+
+        self.next_section("Hugging Face Transformers", PresentationSectionType.NORMAL)
+        limited_data = Text("Hugging Face\nTransormers").shift(1.5*UP+3.5*LEFT)
+        self.play(Write(limited_data))
+        self.next_section("Beschreibung", PresentationSectionType.SUB_NORMAL)
+        limited_data_example = Paragraph("State-of-the-art Machine Learning for \nJAX, PyTorch and TensorFlow", color=GRAY).scale(0.5).next_to(limited_data, DOWN)
+        self.play(Write(limited_data_example))
+        
+        self.next_section("Bekanntheit", PresentationSectionType.SUB_NORMAL)
+        limited_data_example = Paragraph("Sehr bekannt (60k Github Sterne)", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
+        self.play(Write(limited_data_example))
+        self.next_section("Umfang", PresentationSectionType.SUB_NORMAL)
+        limited_data_example = Paragraph("Text, Image und Audio", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
+        self.play(Write(limited_data_example))
+        self.next_section("Beschreibung", PresentationSectionType.SUB_NORMAL)
+        limited_data_example = Paragraph("Fast alle Modelle (RNN, LSTM, Transformer...)", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
+        self.play(Write(limited_data_example))
+        self.next_section("Model Hub", PresentationSectionType.SUB_NORMAL)
+        limited_data_example = Paragraph("Umfangreicher eigener Model-Hub", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
+        self.play(Write(limited_data_example))
+
+
+        self.next_section("Flair", PresentationSectionType.NORMAL)
+        noisy_input = Text("Flair").shift(1.5*UP+4*RIGHT)
+        self.play(Write(noisy_input))
+        self.next_section("Flair", PresentationSectionType.SUB_NORMAL)
+        noisy_input_example = Text("Pre- und self-trained Flair Modelle", color=GRAY).scale(0.5).next_to(noisy_input, DOWN)
+        self.play(Write(noisy_input_example))
+        self.next_section("Flair", PresentationSectionType.SUB_NORMAL)
+        noisy_input_example = Text("Neu (v0.10)", color=GRAY).scale(0.5).next_to(noisy_input_example, DOWN)
+        self.play(Write(noisy_input_example))
+        self.next_section("Flair", PresentationSectionType.SUB_NORMAL)
+        noisy_input_example = Text("relativ langsam (pure Python)", color=GRAY).scale(0.5).next_to(noisy_input_example, DOWN)
+        self.play(Write(noisy_input_example))
+
+
+        self.next_section("Weitere", PresentationSectionType.NORMAL)
+        domain_shift = Text("Weitere").scale(0.8).shift(1.5*DOWN + 4*RIGHT)
+        self.play(Write(domain_shift))
+        self.next_section("Spacy", PresentationSectionType.SUB_NORMAL)
+        domain_shift_example = Text("Spacy (schnell, da Cython)", color=GRAY).scale(0.5).next_to(domain_shift, DOWN)
+        self.play(Write(domain_shift_example))
+        self.next_section("StanfordNER", PresentationSectionType.SUB_NORMAL)
+        domain_shift_example = Text("StanfordNER", color=GRAY).scale(0.5).next_to(domain_shift_example, DOWN)
+        self.play(Write(domain_shift_example))
 
 
 
