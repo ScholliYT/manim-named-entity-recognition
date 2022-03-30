@@ -363,7 +363,7 @@ class OneHotWordEmbeddingPlot2_5(ThreeDScene):
 
         # show problem with ascending numbering
         self.next_section("Problem", PresentationSectionType.NORMAL)
-        problem_text1 = Text('dist("Dortmund", "Moritz") = dist("Dortmund", "Köln")').to_edge(DOWN).scale(0.8)
+        problem_text1 = Text('dist("Dortmund", "Moritz") = dist("Dortmund", "Köln")').to_edge(DOWN).scale(0.7)
         self.add_fixed_in_frame_mobjects(problem_text1)
         self.play(Write(problem_text1))
 
@@ -485,15 +485,15 @@ class Datsets3_1(Scene):
         self.play(Write(conll2003))
         
         self.next_section("Sprachen", PresentationSectionType.NORMAL)
-        conll2003_languages = Text("Englisch + Deutsch").next_to(conll2003, RIGHT).scale(0.6).shift(0.1*DOWN+0.5*LEFT)
+        conll2003_languages = Text("Englisch + Deutsch").next_to(conll2003, RIGHT).scale(0.6).shift(0.1*DOWN+0.6*LEFT)
         self.play(Write(conll2003_languages))
 
         self.next_section("Entities", PresentationSectionType.NORMAL)
-        conll2003_entity_categories = Text("4 Kategorien").next_to(conll2003_languages, RIGHT).scale(0.6).shift(0.25*LEFT)
+        conll2003_entity_categories = Text("4 Kategorien").next_to(conll2003_languages, RIGHT).scale(0.6).shift(0.3*LEFT)
         self.play(Write(conll2003_entity_categories))
 
         self.next_section("Entities", PresentationSectionType.SUB_NORMAL)
-        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).scale(0.6).shift(0.5*LEFT)
+        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).scale(0.6).shift(0.6*LEFT)
         self.play(ReplacementTransform(conll2003_entity_categories, conll2003_entities))
 
         self.next_section("Beispielsatz", PresentationSectionType.SUB_NORMAL)
@@ -601,7 +601,7 @@ class ChallengesWithHistoricalData4_1(Scene):
     def add_title(self):
         title_text = "Herausforderung: Historische Daten"
         self.next_section(title_text, PresentationSectionType.NORMAL)
-        intro_words1 = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.2).to_edge(UP)
+        intro_words1 = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1).to_edge(UP)
         self.add(intro_words1)
 
     def construct(self):
