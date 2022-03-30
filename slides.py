@@ -15,8 +15,8 @@ def get_ner_tagged_sentence(text):
         tagger = SequenceTagger.load("de-ner")
         print("SequenceTagger loaded")
 
-    sentence = Sentence(text)
     # run NER over sentence
+    sentence = Sentence(text)
     tagger.predict(sentence)
 
     print(sentence)
