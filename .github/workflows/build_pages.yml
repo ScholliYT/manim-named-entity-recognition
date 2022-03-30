@@ -12,6 +12,10 @@ on:
       - slides.py
       - make_presentation.sh
       - requirements.txt
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Build Manim Presentation'
 
 jobs:
   test:
