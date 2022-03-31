@@ -614,7 +614,7 @@ class Datsets3_1(Scene):
         self.play(Write(conll2003))
         
         self.next_section("Sprachen", PresentationSectionType.NORMAL)
-        conll2003_languages = Text("Englisch + Deutsch").next_to(conll2003, RIGHT).scale(0.6).shift(0.1*DOWN+0.6*LEFT)
+        conll2003_languages = Text("Englisch + Deutsch").next_to(conll2003, RIGHT).scale(0.6).shift(0.1*DOWN+0.7*LEFT)
         self.play(Write(conll2003_languages))
 
         self.next_section("Entities", PresentationSectionType.NORMAL)
@@ -622,7 +622,7 @@ class Datsets3_1(Scene):
         self.play(Write(conll2003_entity_categories))
 
         self.next_section("Entities", PresentationSectionType.SUB_NORMAL)
-        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).to_edge(RIGHT).scale(0.6).shift(0.3*LEFT)
+        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).scale(0.6).next_to(conll2003_languages, RIGHT).to_edge(RIGHT)
         self.play(ReplacementTransform(conll2003_entity_categories, conll2003_entities))
 
         self.next_section("Beispielsatz", PresentationSectionType.SUB_NORMAL)
@@ -719,7 +719,7 @@ class Frameworks3_3(Scene):
         limited_data_example = Paragraph("Text, Image und Audio", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
         self.play(Write(limited_data_example))
         self.next_section("Beschreibung", PresentationSectionType.SUB_NORMAL)
-        limited_data_example = Paragraph("Fast alle Modelle (RNN, LSTM, Transformer...)", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
+        limited_data_example = Paragraph("Viele Modelle (RNN, LSTM, Transformer...)", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
         self.play(Write(limited_data_example))
         self.next_section("Model Hub", PresentationSectionType.SUB_NORMAL)
         limited_data_example = Paragraph("Umfangreicher eigener Model-Hub", color=GRAY).scale(0.5).next_to(limited_data_example, DOWN)
