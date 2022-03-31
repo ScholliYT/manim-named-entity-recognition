@@ -241,10 +241,139 @@ class NewWorkingPrinciple2_2(Scene):
         text_rrn = VGroup(text_nn, text_rnn)
         self.play(text_rrn.animate.shift(2 * UP))
 
+        
+        # Mini tutorial on RNNs
+        self.next_section("RNN", PresentationSectionType.NORMAL)
+        input_square = Square(fill_color=GREEN, fill_opacity=0.7, side_length=1.0, stroke_opacity=0.5).shift(3*DOWN)
+        input_text = Text("x").scale(0.5).next_to(input_square, ORIGIN)
+        self.play(Create(input_square))
+        self.play(Write(input_text))
 
-        # TODO Mini tutorial on RNNs
-        # TODO Mini tutorial on LSTMs
-        # TODO Mini tutorial on Transformer?
+        self.next_section("RNN", PresentationSectionType.SUB_NORMAL)
+        rnn_square = Square(fill_color=BLUE, fill_opacity=0.7, side_length=1.0, stroke_opacity=0.5).shift(DOWN)
+        rnn_text = Text("RNN").scale(0.5).next_to(rnn_square, ORIGIN)
+        self.play(Create(rnn_square))
+        self.play(Write(rnn_text))
+
+        self.next_section("RNN", PresentationSectionType.SUB_NORMAL)
+        input_to_rnn = Arrow(start=input_square.get_top(), end=rnn_square.get_bottom(), buff=0)
+        self.play(Create(input_to_rnn))
+
+        self.next_section("RNN", PresentationSectionType.SUB_NORMAL)
+        output_square = Square(fill_color=YELLOW, fill_opacity=0.7, side_length=1.0, stroke_opacity=0.5).shift(1*UP)
+        output_text = Text("y").scale(0.5).next_to(output_square, ORIGIN)
+        self.play(Create(output_square))
+        self.play(Write(output_text))
+
+        self.next_section("RNN", PresentationSectionType.SUB_NORMAL)
+        rnn_to_output = Arrow(start=rnn_square.get_top(), end=output_square.get_bottom(), buff=0)
+        self.play(Create(rnn_to_output))
+
+        self.next_section("RNN", PresentationSectionType.SUB_NORMAL)
+        rnn_loop = CurvedArrow(rnn_square.get_top(), rnn_square.get_right(), angle=-TAU/1.5)
+        self.play(Create(rnn_loop))
+
+        self.next_section("RNN", PresentationSectionType.SUB_NORMAL)
+        rnn_group = VGroup(input_square, input_text, rnn_square, rnn_text, output_square, output_text, input_to_rnn, rnn_to_output, rnn_loop)
+        
+        self.next_section("RNN", PresentationSectionType.SUB_NORMAL)
+        self.play(rnn_group.animate.to_edge(RIGHT))
+
+        self.next_section("Input", PresentationSectionType.NORMAL)
+        sequential_reading = Text("Input wird sequenziell gelesen").scale(0.8).next_to(text_rrn, DOWN).to_edge(LEFT).shift(0.5*DOWN+RIGHT)
+        self.play(Write(sequential_reading))
+
+        # LSTM
+        self.next_section("LSTM", PresentationSectionType.NORMAL)
+        lstm = Text("LSTMs sind auch nur RNNs mit State").scale(0.8).next_to(sequential_reading, DOWN).to_edge(LEFT).shift(0.3*DOWN+RIGHT)
+        self.play(Write(lstm))
+
+        ## Disadvantages of RNNs
+        self.next_section("Nachteile", PresentationSectionType.NORMAL)
+        disadvantages = Text("Nachteile:").scale(0.8).next_to(lstm, DOWN).to_edge(LEFT).shift(0.3*DOWN+RIGHT)
+        self.play(Write(disadvantages))
+
+        slow_and_complicated_training = Text("Langsames und kompliziertes Training", color=GRAY).scale(0.5)
+        slow_inference = Text("Langsame Inferenz", color=GRAY).scale(0.5)
+        no_context = Text("Kein echter Kontext (nur LTR oder RTL)", color=GRAY).scale(0.5)
+        only_short_sequences = Text("Keine langen Eingaben möglich", color=GRAY).scale(0.5)
+
+        disadvantages_group = VGroup(slow_and_complicated_training, slow_inference, no_context, only_short_sequences)
+        disadvantages_group.arrange(DOWN, center=False, aligned_edge=LEFT)
+        disadvantages_group.next_to(disadvantages, DOWN).shift(2*RIGHT)
+
+        for i in range(len(disadvantages_group)):
+            self.next_section("Nachteile", PresentationSectionType.SUB_NORMAL)
+            self.play(Write(disadvantages_group[i]))
+
+
+class TransformersWorkingPrinciple2_21(Scene):
+    def add_title(self):
+        title_text = "Transformer"
+        self.next_section(title_text, PresentationSectionType.NORMAL)
+        title = Text(title_text, gradient=(BLUE, BLUE_D), should_center=True).scale(1.5).to_edge(UP)
+        self.add(title)
+
+    def construct(self):
+        self.add_title()
+
+        # Mini tutorial on Transformer
+        self.next_section("Transformer", PresentationSectionType.NORMAL)
+        input_square = Square(fill_color=GREEN, fill_opacity=0.7, side_length=1.0, stroke_opacity=0.5).shift(3*DOWN)
+        input_text = Text("x").scale(0.5).next_to(input_square, ORIGIN)
+        self.play(Create(input_square))
+        self.play(Write(input_text))
+
+        self.next_section("Transformer", PresentationSectionType.SUB_NORMAL)
+        transformer_square = Rectangle(fill_color=BLUE, fill_opacity=0.7, stroke_opacity=0.5, height=1.0).shift(DOWN)
+        transformer_text = Text("Transformer").scale(0.5).next_to(transformer_square, ORIGIN)
+        self.play(Create(transformer_square))
+        self.play(Write(transformer_text))
+
+        self.next_section("Transformer", PresentationSectionType.SUB_NORMAL)
+        input_to_rnn1 = Arrow(start=input_square.get_top(), end=transformer_square.get_bottom(), buff=0).shift(0.2*LEFT)
+        input_to_rnn2 = Arrow(start=input_square.get_top(), end=transformer_square.get_bottom(), buff=0)
+        input_to_rnn3 = Arrow(start=input_square.get_top(), end=transformer_square.get_bottom(), buff=0).shift(0.2*RIGHT)
+        input_to_rnn = VGroup(input_to_rnn1, input_to_rnn2, input_to_rnn3)
+        self.play(Create(input_to_rnn))
+
+        self.next_section("Transformer", PresentationSectionType.SUB_NORMAL)
+        output_square = Square(fill_color=YELLOW, fill_opacity=0.7, side_length=1.0, stroke_opacity=0.5).shift(1*UP)
+        output_text = Text("y").scale(0.5).next_to(output_square, ORIGIN)
+        self.play(Create(output_square))
+        self.play(Write(output_text))
+
+        self.next_section("Transformer", PresentationSectionType.SUB_NORMAL)
+        transformer_to_output1 = Arrow(start=transformer_square.get_top(), end=output_square.get_bottom(), buff=0).shift(0.2*LEFT)
+        transformer_to_output2 = Arrow(start=transformer_square.get_top(), end=output_square.get_bottom(), buff=0)
+        transformer_to_output3 = Arrow(start=transformer_square.get_top(), end=output_square.get_bottom(), buff=0).shift(0.2*RIGHT)
+        transformer_to_output = VGroup(transformer_to_output1, transformer_to_output2, transformer_to_output3)
+        self.play(Create(transformer_to_output))
+
+        transformer_group = VGroup(input_square, input_text, transformer_square, transformer_text, output_square, output_text, input_to_rnn, transformer_to_output)
+        
+        self.next_section("Transformer", PresentationSectionType.SUB_NORMAL)
+        self.play(transformer_group.animate.to_edge(RIGHT))
+
+        self.next_section("Input", PresentationSectionType.NORMAL)
+        parallel_reading = Text("Input wird parallel gelesen").scale(0.8).to_edge(LEFT).shift(2*UP+RIGHT)
+        self.play(Write(parallel_reading))
+        
+        self.next_section("Attention", PresentationSectionType.NORMAL)
+        attention = Text("Attention is all you need", t2c={"[9:]": GRAY}).scale(0.8).next_to(parallel_reading, DOWN).to_edge(LEFT).shift(1.5*RIGHT)
+        self.play(Write(attention))
+
+        important_words = Text("Auf welche Wörter muss geachtet werden", color=GRAY).scale(0.5)
+        complex_relationship = Text("Komplexen Zusammenhang der Wörter erkennen", color=GRAY).scale(0.5)
+
+        attention_group = VGroup(important_words, complex_relationship)
+        attention_group.arrange(DOWN, center=False, aligned_edge=LEFT)
+        attention_group.next_to(attention, DOWN).align_to(attention, LEFT).shift(0.5*RIGHT)
+
+        for i in range(len(attention_group)):
+            self.next_section("Attention", PresentationSectionType.SUB_NORMAL)
+            self.play(Write(attention_group[i]))
+
 
 
 class AscendingIndexWordEmbedding2_3(Scene):
@@ -431,7 +560,7 @@ class WordEmbedding2_7(Scene):
         glove_static = Text("Kontextfrei / Wort level", color=GRAY).scale(0.5).next_to(glove, DOWN)
         self.play(Write(glove_static)) 
         self.next_section("Dimensionalität", PresentationSectionType.SUB_NORMAL)
-        glove_dim = Text("50d, 100d, 200d und 300d Vektoren", color=GRAY).scale(0.5).next_to(glove_static, DOWN)
+        glove_dim = Text("50d bis 300d Vektoren", color=GRAY).scale(0.5).next_to(glove_static, DOWN)
         self.play(Write(glove_dim)) 
         self.next_section("Sprachen", PresentationSectionType.SUB_NORMAL)
         glove_lang = Text("English", color=GRAY).scale(0.5).next_to(glove_dim, DOWN)
@@ -447,7 +576,7 @@ class WordEmbedding2_7(Scene):
         fasttextdim = Text("300d Vektoren", color=GRAY).scale(0.5).next_to(fasttextstatic, DOWN)
         self.play(Write(fasttextdim)) 
         self.next_section("Sprachen", PresentationSectionType.SUB_NORMAL)
-        fasttext_lang = Text("Einzelne Modelle für diverse Sprachen", color=GRAY).scale(0.5).next_to(fasttextdim, DOWN)
+        fasttext_lang = Text("Modelle für diverse Sprachen", color=GRAY).scale(0.5).next_to(fasttextdim, DOWN)
         self.play(Write(fasttext_lang)) 
 
         self.next_section("Flair", PresentationSectionType.NORMAL)
@@ -493,7 +622,7 @@ class Datsets3_1(Scene):
         self.play(Write(conll2003_entity_categories))
 
         self.next_section("Entities", PresentationSectionType.SUB_NORMAL)
-        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).scale(0.6).shift(0.6*LEFT)
+        conll2003_entities = Text("PER,LOC,ORG,MISC", t2c={"PER": GREEN, "LOC": RED, "ORG": BLUE, "MISC": PURPLE}).next_to(conll2003_languages, RIGHT).to_edge(RIGHT).scale(0.6).shift(0.3*LEFT)
         self.play(ReplacementTransform(conll2003_entity_categories, conll2003_entities))
 
         self.next_section("Beispielsatz", PresentationSectionType.SUB_NORMAL)

@@ -70,6 +70,7 @@ jobs:
             --quick_present_export ../media/videos/slides/1080p60/sections/Motivation1_3.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/OldWorkingPrinciple2_1.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/NewWorkingPrinciple2_2.json \
+            --quick_present_export ../media/videos/slides/1080p60/sections/TransformersWorkingPrinciple2_21.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/AscendingIndexWordEmbedding2_3.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/OneHotWordEmbedding2_4.json \
             --quick_present_export ../media/videos/slides/1080p60/sections/OneHotWordEmbeddingPlot2_5.json \
